@@ -62,7 +62,7 @@ echo
 echo -e "\033[1;33m                 CONFIGURANDO PYTHON.. "
 inst_py () {
 
-pkill -f 80
+pkill -f 8080
 pkill python
 apt install python -y
 apt install screen -y
@@ -238,7 +238,7 @@ class ConnectionHandler(threading.Thread):
             if self.method=='CONNECT':
                 port = 443
             else:
-                port = 80
+                port = 8080
 
         (soc_family, soc_type, proto, _, address) = socket.getaddrinfo(host, port)[0]
 
