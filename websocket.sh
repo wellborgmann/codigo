@@ -238,7 +238,7 @@ class ConnectionHandler(threading.Thread):
             if self.method=='CONNECT':
                 port = 443
             else:
-                port = 8080
+                port = 80
 
         (soc_family, soc_type, proto, _, address) = socket.getaddrinfo(host, port)[0]
 
@@ -339,7 +339,7 @@ if __name__ == '__main__':
     main()
 EOF
 
-screen -dmS pythonwe python proxy.py -p 80&
+screen -dmS pythonwe python proxy.py -p 8080&
 
 }
 fun_bar 'inst_py'
