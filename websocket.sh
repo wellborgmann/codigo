@@ -40,7 +40,7 @@ echo -e "\033[1;33m                 INSTALANDO SSL... "
 inst_ssl () {
 
 apt-get install stunnel4 -y
-echo -e "client = no\n[SSL]\ncert = /etc/stunnel/stunnel.pem\naccept = 443 \nconnect = 127.0.0.1:80" > /etc/stunnel/stunnel.conf
+echo -e "client = no\n[SSL]\ncert = /etc/stunnel/stunnel.pem\naccept = 443 \nconnect = 127.0.0.1:8080" > /etc/stunnel/stunnel.conf
 openssl genrsa -out stunnel.key 2048 > /dev/null 2>&1
 (echo "" ; echo "" ; echo "" ; echo "" ; echo "" ; echo "" ; echo "@cloudflare" )|openssl req -new -key stunnel.key -x509 -days 1000 -out stunnel.crt 
 cat stunnel.crt stunnel.key > stunnel.pem 
