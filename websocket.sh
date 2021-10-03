@@ -34,7 +34,7 @@ clear&&clear
 echo -e "\033[1;31m———————————————————————————————————————————————————\033[1;37m"
 echo -e "\033[1;32m              WEBSOCKET SSH "
 echo -e "\033[1;31m———————————————————————————————————————————————————\033[1;37m"
-echo -e "\033[1;37m      WEBSOCKET SSH USARA A PORTA 80 e 443"
+echo -e "\033[1;37m      WEBSOCKET SSH USARA A PORTA 8080 e 443"
 echo
 echo -e "\033[1;33m                 INSTALANDO SSL... "
 inst_ssl () {
@@ -62,7 +62,7 @@ echo
 echo -e "\033[1;33m                 CONFIGURANDO PYTHON.. "
 inst_py () {
 
-pkill -f 80
+pkill -f 8080
 pkill python
 apt install python -y
 apt install screen -y
@@ -238,7 +238,7 @@ class ConnectionHandler(threading.Thread):
             if self.method=='CONNECT':
                 port = 443
             else:
-                port = 80
+                port = 8080
 
         (soc_family, soc_type, proto, _, address) = socket.getaddrinfo(host, port)[0]
 
@@ -339,7 +339,7 @@ if __name__ == '__main__':
     main()
 EOF
 
-screen -dmS pythonwe python proxy.py -p 80&
+screen -dmS pythonwe python proxy.py -p 8080&
 
 }
 fun_bar 'inst_py'
