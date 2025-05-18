@@ -34,13 +34,13 @@ clear&&clear
 echo -e "\033[1;31m———————————————————————————————————————————————————\033[1;37m"
 echo -e "\033[1;32m              WEBSOCKET SSH "
 echo -e "\033[1;31m———————————————————————————————————————————————————\033[1;37m"
-echo -e "\033[1;37m      WEBSOCKET SSH USARA A PORTA 8080 e 443"
+echo -e "\033[1;37m      WEBSOCKET SSH USARA A PORTA 80 e 443"
 echo
 echo -e "\033[1;33m                 INSTALANDO SSL... "
 inst_ssl () {
 
 apt-get install stunnel4 -y
-echo -e "client = no\n[SSL]\ncert = /etc/stunnel/stunnel.pem\naccept = 443 \nconnect = 127.0.0.1:8080" > /etc/stunnel/stunnel.conf
+echo -e "client = no\n[SSL]\ncert = /etc/stunnel/stunnel.pem\naccept = 443 \nconnect = 127.0.0.1:80" > /etc/stunnel/stunnel.conf
 openssl genrsa -out stunnel.key 2048 > /dev/null 2>&1
 (echo "" ; echo "" ; echo "" ; echo "" ; echo "" ; echo "" ; echo "@cloudflare" )|openssl req -new -key stunnel.key -x509 -days 1000 -out stunnel.crt 
 cat stunnel.crt stunnel.key > stunnel.pem 
@@ -62,7 +62,7 @@ echo
 echo -e "\033[1;33m                 CONFIGURANDO PYTHON.. "
 inst_py () {
 
-pkill -f 8080
+pkill -f 80
 pkill python
 apt install python -y
 apt install screen -y
@@ -238,7 +238,7 @@ class ConnectionHandler(threading.Thread):
             if self.method=='CONNECT':
                 port = 443
             else:
-                port = 8080
+                port = 80
 
         (soc_family, soc_type, proto, _, address) = socket.getaddrinfo(host, port)[0]
 
@@ -339,7 +339,7 @@ if __name__ == '__main__':
     main()
 EOF
 
-screen -dmS pythonwe python proxy.py -p 8080&
+screen -dmS pythonwe python proxy.py -p 80&
 
 }
 fun_bar 'inst_py'
